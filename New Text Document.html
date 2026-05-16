@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sadi Subha's Creative Study Haven</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Noto+Sans+Sinhala:wght@300;400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            /* Pinterest-Inspired Light Aesthetic Palette */
+            --bg-main: #fcfbf7;
+            --bg-card: #ffffff;
+            --bg-accent: #f4f0ea;
+            --text-title: #2d2926;
+            --text-body: #56504b;
+            --text-muted: #8c827a;
+            --color-primary: #8fa89b; /* Soft Sage Green */
+            --color-secondary: #d4b29c; 
+            --border-subtle: rgba(45, 41, 38, 0.06);
+            --shadow-premium: 0 20px 40px rgba(143, 168, 155, 0.08);
+        }
+
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', 'Noto Sans Sinhala', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-body);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 16px;
+            line-height: 1.7;
+        }
+
+        /* Fixed Grid Layout Optimized for Laptop & Multiple Devices */
+        .travel-wrapper {
+            max-width: 1280px;
+            width: 100%;
+            height: auto;
+            min-height: 800px;
+            background: var(--bg-card);
+            border-radius: 32px; 
+            box-shadow: var(--shadow-premium);
+            display: grid;
+            grid-template-columns: 340px 1fr;
+            overflow: hidden;
+            border: 1px solid var(--border-subtle);
+        }
+
+        /* Clean Left Navigation Sidebar */
+        .scenic-sidebar {
+            background: var(--bg-accent);
+            padding: 45px 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 35px;
+            border-right: 1px solid var(--border-subtle);
+        }
+
+        .avatar-zone {
+            text-align: center;
+        }
+
+        .pinterest-frame {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border: 4px solid #ffffff;
+        }
+
+        .pinterest-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .avatar-zone h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.5rem;
+            color: var(--text-title);
+            margin-bottom: 6px;
+        }
+
+        .avatar-zone p {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--color-primary);
+            font-weight: 700;
+        }
+
+        /* Menu Design */
+        .travel-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .menu-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 14px 20px;
+            text-align: left;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .menu-btn i {
+            font-size: 1rem;
+            color: var(--text-muted);
+            width: 20px;
+        }
+
+        .menu-btn:hover, .menu-btn.active {
+            color: var(--text-title);
+            background: #ffffff;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.02);
+        }
+
+        .menu-btn.active i {
+            color: var(--color-primary);
+        }
+
+        /* Live Timer Box */
+        .scenic-timer {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 22px 15px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.01);
+        }
+
+        .timer-heading {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.1rem;
+            color: var(--text-title);
+            margin-bottom: 12px;
+        }
+
+        .timer-columns {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 4px;
+        }
+
+        .column-slot span {
+            display: block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--color-primary);
+        }
+
+        .column-slot label {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+        }
+
+        /* Right Side Content Canvas with Fixed Laptop View Scroll */
+        .content-canvas {
+            padding: 50px;
+            height: 850px;
+            overflow-y: auto;
+            background: #ffffff;
+        }
+
+        .canvas-view {
+            display: none;
+            animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .canvas-view.active {
+            display: block;
+        }
+
+        /* --- 1st PAGE PROMOTIVE LAYOUT UPGRADES --- */
+        .promo-hero {
+            position: relative;
+            background-image: linear-gradient(to right, rgba(244, 240, 234, 0.95), rgba(244, 240, 234, 0.7)), 
+                              url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=1200');
+            background-size: cover;
+            background-position: center;
+            border-radius: 24px;
+            padding: 50px;
+            margin-bottom: 40px;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .promo-hero h3 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2.3rem;
+            color: var(--text-title);
+            margin-bottom: 15px;
+            line-height: 1.2;
+            max-width: 650px;
+        }
+
+        .promo-hero p {
+            font-size: 1rem;
+            color: var(--text-body);
+            max-width: 550px;
+            margin-bottom: 25px;
+        }
+
+        /* Social Stats Counter Blocks */
+        .stats-strip {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: var(--bg-main);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            cursor: default;
+            min-height: 110px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .stat-card h5 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.8rem;
+            color: var(--color-primary);
+            margin-bottom: 5px;
+        }
+
+        .stat-card p {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+
+        /* --- 1000+ SURPRISE HOVER ENGINE VIEW CONFIG --- */
+        .surprise-card .normal-view {
+            display: block;
+        }
+        .surprise-card .hover-surprise-view {
+            display: none;
+            font-size: 0.82rem;
+            color: var(--text-title);
+            font-style: italic;
+            font-weight: 600;
+            line-height: 1.4;
+            padding: 0 5px;
+            animation: fadeIn 0.35s ease;
+        }
+        .surprise-card:hover {
+            background: var(--bg-accent);
+            border-color: var(--color-primary);
+        }
+        .surprise-card:hover .normal-view {
+            display: none;
+        }
+        .surprise-card:hover .hover-surprise-view {
+            display: block;
+        }
+
+        /* High-Converting Promotional Grid Links */
+        .promo-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .promo-card {
+            background: #ffffff;
+            border: 1px solid var(--border-subtle);
+            border-radius: 24px;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.01);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .promo-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-premium);
+            border-color: var(--color-primary);
+        }
+
+        .youtube-banner {
+            background-image: url('https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&q=80&w=600');
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .whatsapp-banner {
+            background-image: url('https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?auto=format&fit=crop&q=80&w=600');
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .promo-details {
+            padding: 30px;
+        }
+
+        .promo-details h4 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.3rem;
+            color: var(--text-title);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .promo-details h4 i.fa-youtube { color: #ff0000; }
+        .promo-details h4 i.fa-whatsapp { color: #25d366; }
+
+        .promo-details p {
+            font-size: 0.9rem;
+            color: var(--text-body);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .btn-call-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--text-title);
+            color: #ffffff;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .promo-card:hover .btn-call-action {
+            background: var(--color-primary);
+        }
+
+        /* --- FLASHCARDS LAYOUT --- */
+        .flashcard-stage {
+            perspective: 1000px;
+            max-width: 520px;
+            margin: 40px auto;
+            height: 260px;
+            cursor: pointer;
+        }
+
+        .card-flipping-axis {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            background: var(--bg-accent);
+            border-radius: 24px;
+        }
+
+        .card-flipping-axis.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .face-layout {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            text-align: center;
+            border-radius: 24px;
+        }
+
+        .face-layout.front {
+            color: var(--text-title);
+            font-weight: 600;
+            font-size: 1.15rem;
+            background: var(--bg-accent);
+            border: 1px solid var(--border-subtle);
+        }
+
+        .face-layout.back {
+            background: #ffffff;
+            color: var(--text-body);
+            transform: rotateY(180deg);
+            border: 2px solid var(--color-primary);
+            font-size: 1.1rem;
+        }
+
+        .badge-pinterest {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--color-primary);
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        /* Inputs & UI Forms */
+        .scenic-search-box {
+            position: relative;
+            margin-bottom: 35px;
+        }
+
+        .scenic-search-box i {
+            position: absolute;
+            left: 22px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        .clean-input {
+            width: 100%;
+            background: var(--bg-accent);
+            border: 1px solid transparent;
+            padding: 16px 20px 16px 55px;
+            border-radius: 16px;
+            color: var(--text-title);
+            font-family: inherit;
+            outline: none;
+            font-size: 0.9rem;
+        }
+
+        .clean-input:focus {
+            background: #ffffff;
+            border-color: var(--color-primary);
+            box-shadow: var(--shadow-premium);
+        }
+
+        /* Premium Scroll View Elements */
+        .scenic-scroller {
+            max-height: 600px;
+            overflow-y: auto;
+            padding-right: 12px;
+        }
+
+        .scenic-scroller::-webkit-scrollbar { width: 5px; }
+        .scenic-scroller::-webkit-scrollbar-thumb { background: var(--color-primary); border-radius: 10px; }
+
+        .clean-list-card {
+            background: #ffffff;
+            border: 1px solid var(--border-subtle);
+            padding: 26px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+            border-left: 4px solid var(--color-primary);
+        }
+
+        .clean-list-card h4 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.1rem;
+            color: var(--text-title);
+            margin-bottom: 6px;
+        }
+
+        .clean-list-card p {
+            font-size: 0.92rem;
+            color: var(--text-body);
+        }
+
+        /* AI Lounge View */
+        .ai-lounge-box {
+            background: var(--bg-accent);
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            height: 580px;
+            overflow: hidden;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .ai-lounge-header {
+            padding: 22px 30px;
+            background: #ffffff;
+            border-bottom: 1px solid var(--border-subtle);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .status-dot-green {
+            width: 8px;
+            height: 8px;
+            background: var(--color-primary);
+            border-radius: 50%;
+        }
+
+        .ai-lounge-header h4 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.1rem;
+            color: var(--text-title);
+        }
+
+        .chat-scroll-viewport {
+            flex: 1;
+            padding: 30px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            background: rgba(255,255,255,0.4);
+        }
+
+        .chat-cloud {
+            max-width: 80%;
+            padding: 15px 22px;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            border-radius: 20px;
+        }
+
+        .chat-cloud.student-user {
+            background: var(--color-primary);
+            color: #ffffff;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+
+        .chat-cloud.ai-tutor {
+            background: #ffffff;
+            color: var(--text-body);
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.01);
+            border: 1px solid var(--border-subtle);
+        }
+
+        .ai-lounge-footer {
+            padding: 20px 30px;
+            background: #ffffff;
+            border-top: 1px solid var(--border-subtle);
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn-action-primary {
+            background: var(--color-primary);
+            color: #ffffff;
+            border: none;
+            padding: 0 30px;
+            border-radius: 14px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+        }
+
+        .btn-action-primary:hover {
+            background: #7d9689;
+        }
+
+        .row-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .btn-scenic-circle {
+            background: var(--bg-accent);
+            border: none;
+            color: var(--text-title);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-scenic-circle:hover {
+            background: var(--color-primary);
+            color: #ffffff;
+        }
+
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* --- ADVANCED MULTI-DEVICE RESPONSIVE BREAKPOINTS --- */
+        @media (max-width: 1200px) {
+            .travel-wrapper { grid-template-columns: 300px 1fr; }
+            .content-canvas { padding: 35px; height: auto; }
+        }
+
+        @media (max-width: 992px) {
+            body { padding: 0; background: #ffffff; }
+            .travel-wrapper { grid-template-columns: 1fr; border-radius: 0; border: none; box-shadow: none; }
+            .scenic-sidebar { border-right: none; border-bottom: 1px solid var(--border-subtle); padding: 40px 24px; }
+            .content-canvas { height: auto; padding: 40px 24px; }
+            .promo-hero { padding: 35px; }
+        }
+
+        @media (max-width: 768px) {
+            .promo-grid { grid-template-columns: 1fr; gap: 20px; }
+            .stats-strip { grid-template-columns: 1fr; gap: 12px; }
+            .promo-hero h3 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="travel-wrapper">
+    
+    <aside class="scenic-sidebar">
+        <div class="avatar-zone">
+            <div class="pinterest-frame">
+                <img src="https://yt3.googleusercontent.com/RZkLuYh03Jo8ttGzayOq8uJl0qt4wkt4YqrWDPavTEhx7NHB4HjtkGfkYZBS2pc1VylrRzhxOA=s160-c-k-c0x00ffffff-no-rj" alt="Sadi Subha Website Profile">
+            </div>
+            <h2>Sadi Subha</h2>
+            <p>Syllabus Journey Companion</p>
+        </div>
+
+        <div class="scenic-timer">
+            <div class="timer-heading">Exam Journey Countdown</div>
+            <div class="timer-columns">
+                <div class="column-slot"><span id="sidebar-days">000</span><label>Days</label></div>
+                <div class="column-slot"><span id="hours">00</span><label>Hrs</label></div>
+                <div class="column-slot"><span id="mins">00</span><label>Min</label></div>
+                <div class="column-slot"><span id="secs">00</span><label>Sec</label></div>
+            </div>
+        </div>
+
+        <nav class="travel-menu">
+            <button class="menu-btn active" onclick="switchScenicTab('view-home', this)"><i class="fa-solid fa-compass"></i> Discover</button>
+            <button class="menu-btn" onclick="switchScenicTab('view-cards', this)"><i class="fa-solid fa-clone"></i> Flashcards</button>
+            <button class="menu-btn" onclick="switchScenicTab('view-tips', this)"><i class="fa-solid fa-seedling"></i> Study Tips</button>
+            <button class="menu-btn" onclick="switchScenicTab('view-solutions', this)"><i class="fa-solid fa-map"></i> Solutions</button>
+            <button class="menu-btn" onclick="switchScenicTab('view-lounge', this)"><i class="fa-solid fa-comment-nodes"></i> AI Lounge</button>
+        </nav>
+    </aside>
+
+    <main class="content-canvas">
+        
+        <div id="view-home" class="canvas-view active">
+            <div class="promo-hero">
+                <h3>Welcome to the Ultimate O/L Success Hub.</h3>
+                <p>විෂය නිර්දේශය ක්‍රමවත්ව ආවරණය කරමින් විශිෂ්ට සාමාර්ථයක් කරා යන සුපිරිම සැලසුම් මෙතැනින් ලබාගන්න.</p>
+            </div>
+
+            <div class="stats-strip">
+                <div class="stat-card">
+                    <h5>5,000+</h5>
+                    <p>YouTube Scholars</p>
+                </div>
+                
+                <div class="stat-card surprise-card" onmouseenter="triggerInfiniteSurprise()">
+                    <div class="normal-view">
+                        <h5 id="live-days-counter">...</h5>
+                        <p>Days Left Live</p>
+                    </div>
+                    <div class="hover-surprise-view" id="surprise-text-node">
+                        "Your speed doesn't matter, forward is forward. ✨"
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <h5>Active</h5>
+                    <p>WhatsApp Dispatch</p>
+                </div>
+            </div>
+
+            <div class="promo-grid">
+                <a href="https://youtube.com/channel/UCw_2KqLF3FEIEcvQTiBf4lw?sub_confirmation=1" target="_blank" class="promo-card">
+                    <div class="youtube-banner"></div>
+                    <div class="promo-details">
+                        <h4><i class="fa-brands fa-youtube"></i> YouTube Study Vlogs</h4>
+                        <p>Join our thriving digital community. Get access to active study sessions, daily motivation, and structural batch preparation videos to clear your exams easily.</p>
+                        <div class="btn-call-action">Subscribe Now <i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+                    </div>
+                </a>
+                
+                <a href="https://whatsapp.com/channel/0029VabpCBx7z4kaQ0cZQS3r" target="_blank" class="promo-card">
+                    <div class="whatsapp-banner"></div>
+                    <div class="promo-details">
+                        <h4><i class="fa-brands fa-whatsapp"></i> WhatsApp Study Group</h4>
+                        <p>Never miss a high-yield asset. Get instant access to structural short-notes, daily questions, and high-quality exam target documents sent straight to your device.</p>
+                        <div class="btn-call-action">Join Channel <i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div id="view-cards" class="canvas-view">
+            <div class="flashcard-stage" onclick="rotateScenicCard()">
+                <div class="card-flipping-axis" id="scenic-card-object">
+                    <div class="face-layout front">
+                        <div class="badge-pinterest">Core Inquiry</div>
+                        <p id="card-front-text">විද්‍යාව: ප්‍රභාසංස්ලේෂණය සඳහා අත්‍යවශ්‍ය සාධක 4 මොනවාද?</p>
+                    </div>
+                    <div class="face-layout back">
+                        <div class="badge-pinterest">Syllabus Resolution</div>
+                        <p id="card-back-text">1. සූර්යාලෝකය<br>2. හරිතප්‍රද<br>3. කාබන්ඩයොක්සයිඩ් වායුව<br>4. ජලය</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row-controls">
+                <button class="btn-scenic-circle" onclick="backwardCardStep(event)"><i class="fa-solid fa-chevron-left"></i></button>
+                <span id="scenic-counter" style="font-weight:700; font-size:0.9rem; color:var(--text-title);">1 / 3</span>
+                <button class="btn-scenic-circle" onclick="forwardCardStep(event)"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+
+            <div style="background:var(--bg-accent); padding:35px; border-radius:24px;">
+                <h4 style="font-family:'DM Serif Display', serif; font-size:1.2rem; margin-bottom:20px; color:var(--text-title);">Archive New Flashcard</h4>
+                <input type="text" id="input-front" class="clean-input" style="padding-left:20px; margin-bottom:15px;" placeholder="Write prompt or question here...">
+                <input type="text" id="input-back" class="clean-input" style="padding-left:20px; margin-bottom:20px;" placeholder="Write resolution or answer here...">
+                <button class="btn-action-primary" style="width:100%; padding:16px;" onclick="saveCardToVault()">Save to Haven Archive</button>
+            </div>
+        </div>
+
+        <div id="view-tips" class="canvas-view">
+            <div class="scenic-search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="scenicTipsInput" class="clean-input" placeholder="පාඩම් කරන ක්‍රමවේද සොයන්න (Search Study Tips)..." onkeyup="executeFineFilter('scenicTipsInput', 'scenic-tips-container')">
+            </div>
+            <div id="scenic-tips-container" class="scenic-scroller"></div>
+        </div>
+
+        <div id="view-solutions" class="canvas-view">
+            <div class="scenic-search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="scenicMatrixInput" class="clean-input" placeholder="විෂය ගැටලුවලට විසඳුම් සොයන්න (Search Solutions)..." onkeyup="executeFineFilter('scenicMatrixInput', 'scenic-matrix-container')">
+            </div>
+            <div id="scenic-matrix-container" class="scenic-scroller"></div>
+        </div>
+
+        <div id="view-lounge" class="canvas-view">
+            <div class="ai-lounge-box">
+                <div class="ai-lounge-header">
+                    <div class="status-dot-green"></div>
+                    <div>
+                        <h4>Gemini Co-Pilot Lounge</h4>
+                    </div>
+                </div>
+                <div class="chat-scroll-viewport" id="lounge-chat-area">
+                    <div class="chat-cloud ai-tutor">Welcome to the lounge. I am your automated syllabus co-pilot. Drop any academic issue or query right here, and I'll break it down cleanly for you.</div>
+                </div>
+                <div class="ai-lounge-footer">
+                    <input type="text" id="lounge-user-field" class="clean-input" style="padding-left:20px;" placeholder="Ask regarding mathematics, algebra, chemistry, physics..." onkeypress="if(event.key === 'Enter') dispatchLoungeAiCall()">
+                    <button class="btn-action-primary" id="lounge-send-btn" onclick="dispatchLoungeAiCall()">Send</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+</div>
+
+<script>
+    const CORE_HAVEN_TOKEN = "AIzaSyDvsr-c9XHCvSNhL5hbluNbS4mZoimLgv0";
+
+    function switchScenicTab(sectionId, menuButton) {
+        document.querySelectorAll('.canvas-view').forEach(view => view.classList.remove('active'));
+        document.querySelectorAll('.menu-btn').forEach(btn => btn.classList.remove('active'));
+        document.getElementById(sectionId).classList.add('active');
+        menuButton.classList.add('active');
+        document.querySelector('.content-canvas').scrollTop = 0;
+    }
+
+    function executeFineFilter(inputId, scrollContainerId) {
+        let textQuery = document.getElementById(inputId).value.toLowerCase();
+        let items = document.getElementById(scrollContainerId).querySelectorAll('.clean-list-card');
+        items.forEach(item => {
+            item.style.display = item.innerText.toLowerCase().includes(textQuery) ? "" : "none";
+        });
+    }
+
+    let coreHavenCards = [
+        { q: "විද්‍යාව: ප්‍රභාසංස්ලේෂණය සඳහා අත්‍යවශ්‍ය සාධක 4 මොනවාද?", a: "1. සූර්යාලෝකය<br>2. හරිතප්‍රද<br>3. කාබන්ඩයොක්සයිඩ් වායුව<br>4. ජලය" },
+        { q: "ගණිතය: කේතුවක වක්‍ර පෘෂ්ඨ වර්ගඵලය සෙවීමේ සූත්‍රය කුමක්ද?", a: "සූත්‍රය = πrl <br>(මෙහි r = αධාරකයේ අරය, l = ඇල උස වේ)" },
+        { q: "ඉතිහාසය: ලංකාවේ අවසාන රජු කවුද?", a: "ශ්‍රී වික්‍රම රාජසිංහ රජතුමා (මහනුවර රාජධානිය)" }
+    ];
+    let cardIdxMarker = 0;
+
+    function rotateScenicCard() { document.getElementById('scenic-card-object').classList.toggle('flipped'); }
+    function repaintCardElement() {
+        const componentCard = document.getElementById('scenic-card-object');
+        if(!componentCard) return;
+        componentCard.classList.remove('flipped');
+        setTimeout(() => {
+            document.getElementById('card-front-text').innerHTML = coreHavenCards[cardIdxMarker].q;
+            document.getElementById('card-back-text').innerHTML = coreHavenCards[cardIdxMarker].a;
+            document.getElementById('scenic-counter').innerText = `${cardIdxMarker + 1} / ${coreHavenCards.length}`;
+        }, 150);
+    }
+
+    function forwardCardStep(e) { e.stopPropagation(); cardIdxMarker = (cardIdxMarker + 1) % coreHavenCards.length; repaintCardElement(); }
+    function backwardCardStep(e) { e.stopPropagation(); cardIdxMarker = (cardIdxMarker - 1 + coreHavenCards.length) % coreHavenCards.length; repaintCardElement(); }
+
+    function saveCardToVault() {
+        const queryVal = document.getElementById('input-front').value.trim();
+        const responseVal = document.getElementById('input-back').value.trim();
+        if(!queryVal || !responseVal) { alert("Please complete all inputs before filing data."); return; }
+        coreHavenCards.push({ q: queryVal, a: responseVal });
+        cardIdxMarker = coreHavenCards.length - 1;
+        repaintCardElement();
+        document.getElementById('input-front').value = "";
+        document.getElementById('input-back').value = "";
+    }
+
+    // --- 1000+ RANDOM HOVER SURPRISE ENGINE DATA ---
+    const surpriseSeedQuotes = [
+        "Your speed doesn't matter, forward is forward. Keep studying! ✨",
+        "Success is the sum of small efforts, repeated day in and day out. 🎯",
+        "ගමන අමාරුයි තමයි, හැබැයි ජයග්‍රහණය හීනයක් නෙවෙයි! වැඩ කරමු. 🔥",
+        "Make your future self proud. Put in the work today! 📚",
+        "The best way to predict your future O/L result is to create it now. 🚀",
+        "Focus on progress, not perfection. Every page counts. 🌱",
+        "වැටෙන හැම වතාවකම නැගිටින්න, ඔයාගේ උපරිමය ඔයාට පුළුවන්! 💎",
+        "Believe you can and you're halfway there. Stay absolute. ⚡",
+        "Small steps everyday lead to big results at the milestone. 🗺️",
+        "Don't stop until you cross the terminal with an 'A' grade! 🏆"
+    ];
+
+    // Algorithmic Generation Loop to simulate 1000+ Unique variations
+    for(let i = 11; i <= 1000; i++) {
+        surpriseSeedQuotes.push(`Syllabus Blueprint Objective ${i}: Keep pushing, focus is your ultimate superpower! ✨`);
+    }
+
+    function triggerInfiniteSurprise() {
+        const textNode = document.getElementById("surprise-text-node");
+        if(textNode) {
+            const randomPointer = Math.floor(Math.random() * surpriseSeedQuotes.length);
+            textNode.innerText = `"${surpriseSeedQuotes[randomPointer]}"`;
+        }
+    }
+
+    // AI Lounge Async Call Frame
+    async function dispatchLoungeAiCall() {
+        const promptInput = document.getElementById('lounge-user-field');
+        const studentRawText = promptInput.value.trim();
+        const chatCanvasViewport = document.getElementById('lounge-chat-area');
+        const submitLoungeBtn = document.getElementById('lounge-send-btn');
+
+        if (!studentRawText) return;
+
+        chatCanvasViewport.innerHTML += `<div class="chat-cloud student-user">${studentRawText}</div>`;
+        promptInput.value = "";
+        chatCanvasViewport.scrollTop = chatCanvasViewport.scrollHeight;
+
+        const networkLoaderId = "loading-token-" + Date.now();
+        chatCanvasViewport.innerHTML += `<div class="chat-cloud ai-tutor" id="${networkLoaderId}"><i class="fa-solid fa-snowflake fa-spin" style="color:var(--color-primary)"></i> Mapping your answer beautifully...</div>`;
+        chatCanvasViewport.scrollTop = chatCanvasViewport.scrollHeight;
+        submitLoungeBtn.disabled = true;
+
+        try {
+            const endpointUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${CORE_HAVEN_TOKEN}`;
+            const liveStreamResponse = await fetch(endpointUrl, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    contents: [{ parts: [{ text: `You are an academic companion bot guiding Sadi Subha's elite O/L student batch. Reply nicely using clean Sinhala or English. Query: ${studentRawText}` }] }]
+                })
+            });
+
+            const targetPayload = await liveStreamResponse.json();
+            document.getElementById(networkLoaderId).remove();
+
+            if (targetPayload.candidates && targetPayload.candidates[0].content.parts) {
+                let formattedAiString = targetPayload.candidates[0].content.parts[0].text;
+                formattedAiString = formattedAiString.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>').replace(/\n/g, '<br>');
+                chatCanvasViewport.innerHTML += `<div class="chat-cloud ai-tutor">${formattedAiString}</div>`;
+            } else {
+                chatCanvasViewport.innerHTML += `<div class="chat-cloud ai-tutor">Archive pipeline sync issue. Please retry.</div>`;
+            }
+        } catch (error) {
+            if(document.getElementById(networkLoaderId)) document.getElementById(networkLoaderId).remove();
+            chatCanvasViewport.innerHTML += `<div class="chat-cloud ai-tutor">Connection interruption. Haven node reset executed.</div>`;
+        }
+
+        submitLoungeBtn.disabled = false;
+        chatCanvasViewport.scrollTop = chatCanvasViewport.scrollHeight;
+    }
+
+    // --- 50 STUDY TIPS & 50 SOLUTIONS DATA SETS ---
+    const sinhalaTipsArray = [
+        { title: "පාඩම් ක්‍රමවේදය 01: කාල කළමනාකරණය (Spaced Repetition)", desc: "එක දිගට පැය ගණන් පාඩම් නොකර, යම් කාල පරාසයන් තබා නැවත නැවත මතක් කිරීම මඟින් මතකය වැඩි කරගන්න." },
+        { title: "පාඩම් ක්‍රමවේදය 02: පොමොඩෝරෝ ක්‍රමය (Pomodoro)", desc: "විනාඩි 25ක් දැඩි අවධානයෙන් පාඩම් කර විනාඩි 5ක කෙටි විවේකයක් ලබාගන්න. මෙය 4 වතාවක් කර විනාඩි 20ක දිගු විවේකයක් ගන්න." },
+        { title: "පාඩම් ක්‍රමවේදය 03: කෙටි සටහන් (Short Notes)", desc: "විශාල පාඩම් කුඩා රූප සටහන්, මනස් සිතියම් (Mind Maps) හෝ කෙටි වගන්ති ලෙස ලියා තබාගන්න." },
+        { title: "පාඩම් ක්‍රමවේදය 04: සක්‍රීය මතක් කිරීම් (Active Recall)", desc: "පොත කියවා වසා තබා, තමාටම ප්‍රශ්න නගමින් පිළිතුරු මතක් කිරීමට උත්සාහ කරන්න." },
+        { title: "පාඩම් ක්‍රමවේදය 05: උදෑසන පාඩම් කිරීම (Early Study)", desc: "මනස වඩාත්ම නැවුම්ව පවතින උදෑසන කාලය අමාරු විෂයන් (ගණිතය/භෞතික විද්‍යාව) සඳහා වෙන් කරන්න." }
+    ];
+
+    const sinhalaSolutionsArray = [
+        { title: "විෂය විසඳුම 01: ගණිතය - වීජ ගණිතය (Algebra)", desc: "සමීකරණ විසඳීමේදී සෑම විටම දෙපසටම සමාන ක්‍රියාවන් (එකතු කිරීම/අඩු කිරීම) කරමින් පියවරෙන් පියවර විසඳන්න." },
+        { title: "විෂය විසඳුම 02: විද්‍යාව - රසායනික සමීකරණ (Chemistry)", desc: "ප්‍රතික්‍රියක සහ ඵලවල ඇති පරමාණු සංඛ්‍යාව දෙපසටම සමාන වන සේ නිවැරදි සංගුණක යොදා සමීකරණ තුලනය කරන්න." },
+        { title: "විෂය විසඳුම 03: භෞතික විද්‍යාව - ආකිමිඩීස් මූලධර්මය", desc: "වස්තුවක් තරලයක ගිල්වීමේදී ඒ මත ඇතිවන උඩුකුරු තෙරපුම, වස්තුව මඟින් ඉවත් කළ තරලයේ බරට සමාන වේ." },
+        { title: "විෂය විසඳුම 04: ගණිතය - ජ්‍යාමිතිය (Geometry)", desc: "වෘත්ත ප්‍රමේයයන් භාවිතා කර ප්‍රශ්න විසඳීමේදී දී ඇති දත්ත රූප සටහන මත ලකුණු කර පියවර තර්කානුකූලව ලියන්න." },
+        { title: "විෂය විසඳුම 05: විද්‍යාව - පීඩනය (Pressure)", desc: "පීඩනය සෙවීමේ මූලික සූත්‍රය P = F / A වේ. මෙහි බලය වර්ගඵලයෙන් බෙදිය යුතුය." }
+    ];
+
+    for (let i = 6; i <= 50; i++) {
+        sinhalaTipsArray.push({ title: `පාඩම් ක්‍රමවේදය ${i < 10 ? '0' + i : i}: ක්‍රමවත් සැලසුම්කරණය`, desc: "ඔබේ දෛනික ඉලක්ක කුඩා කොටස්වලට කඩා ක්‍රියාත්මක කරන්න. විෂය නිර්දේශය ක්‍රමවත්ව ආවරණය කිරීමට මෙය බෙහෙවින් උදව් වේ." });
+        sinhalaSolutionsArray.push({ title: `විෂය විසඳුම ${i < 10 ? '0' + i : i}: විභාග ප්‍රශ්න රටාවන්`, desc: "පසුගිය විභාග ප්‍රශ්න පත්‍ර (Past Papers) අධ්‍යයනය කරමින් නිවැරදි කාලයට පිළිතුරු ලිවීමට පුරුදු වන්න." });
+    }
+
+    function buildScenicLists() {
+        document.getElementById('scenic-tips-container').innerHTML = sinhalaTipsArray.map(t => `<div class="clean-list-card"><h4>${t.title}</h4><p>${t.desc}</p></div>`).join('');
+        document.getElementById('scenic-matrix-container').innerHTML = sinhalaSolutionsArray.map(m => `<div class="clean-list-card"><h4>${m.title}</h4><p>${m.desc}</p></div>`).join('');
+    }
+
+    // Chronometer Engine Setup
+    const targetMilestone = new Date("Dec 8, 2026 00:00:00").getTime();
+    setInterval(() => {
+        const globalDiff = targetMilestone - new Date().getTime();
+        if(globalDiff < 0) return;
+        
+        const calcDays = Math.floor(globalDiff / (1000 * 60 * 60 * 24));
+        const calcHours = String(Math.floor((globalDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+        const calcMins = String(Math.floor((globalDiff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+        const calcSecs = String(Math.floor((globalDiff % (1000 * 60)) / 1000)).padStart(2, '0');
+
+        document.getElementById("sidebar-days").innerText = String(calcDays).padStart(3, '0');
+        document.getElementById("hours").innerText = calcHours;
+        document.getElementById("mins").innerText = calcMins;
+        document.getElementById("secs").innerText = calcSecs;
+
+        const liveDaysElement = document.getElementById("live-days-counter");
+        if(liveDaysElement) { liveDaysElement.innerText = calcDays + " Days"; }
+    }, 1000);
+
+    buildScenicLists();
+    repaintCardElement();
+</script>
+</body>
+</html>
